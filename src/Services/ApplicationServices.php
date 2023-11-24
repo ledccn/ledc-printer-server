@@ -47,6 +47,7 @@ class ApplicationServices
         $application->title = $data['title'];
         $application->description = $data['description'];
         $application->callback_url = $data['callback_url'];
+        $application->enabled = empty($user->status) ? 1 : 0;
         // 入库
         if (false === $application->save()) {
             throw new BusinessException('创建打印机失败');
