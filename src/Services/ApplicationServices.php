@@ -11,6 +11,8 @@ use Ledc\Printer\Support\V;
 use Ledc\WorkermanProcess\Events;
 use support\exception\BusinessException;
 use support\Request;
+use plugin\admin\app\model\User as WaUserByPluginAdmin;
+use plugin\user\app\model\User as WaUserByPluginUser;
 use think\exception\ValidateException;
 
 /**
@@ -22,6 +24,35 @@ class ApplicationServices
      * 打印机长连接用户绑定前缀
      */
     const bindUserPrefix = 'printer_';
+
+    /**
+     * 创建打印机应用
+     * @param array $data
+     * @param WaUserByPluginAdmin|WaUserByPluginUser $user
+     * @return Application
+     * @throws BusinessException
+     */
+    public static function create(array $data, WaUserByPluginAdmin|WaUserByPluginUser $user): Application
+    {
+        $rule = [
+            'title|打印机标题' => 'require',
+            'description|打印机描述' => 'require',
+            'callback_url|打印机回调URL' => 'require'
+        ];
+        $v = V::validate($rule);
+        $v->check($data);
+
+        $application = new Application();
+        $application->title = $data['title'];
+        $application->description = $data['description'];
+        $application->callback_url = $data['callback_url'];
+        // 入库
+        if (false === $application->save()) {
+            throw new BusinessException('创建打印机失败');
+        }
+
+        return $application;
+    }
 
     /**
      * @param array $data
