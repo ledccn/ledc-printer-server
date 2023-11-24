@@ -3,7 +3,6 @@
 namespace Ledc\Printer\Services;
 
 use GatewayWorker\Lib\Gateway;
-use Ledc\Printer\Model\Application;
 use Ledc\Printer\Model\GatewayOnline;
 
 /**
@@ -12,6 +11,7 @@ use Ledc\Printer\Model\GatewayOnline;
 class GatewayOnlineServices
 {
     /**
+     * 更新客户端ID
      * @param int $app_id
      * @param string $client_id
      * @return GatewayOnline|null
@@ -25,6 +25,26 @@ class GatewayOnlineServices
         }
 
         return null;
+    }
+
+    /**
+     * 更新客户端在线
+     * @param int $app_id
+     * @param string $client_id
+     * @param bool $online
+     * @return GatewayOnline|null
+     */
+    public static function updateOnline(int $app_id, string $client_id, bool $online): ?GatewayOnline
+    {
+        $gatewayOnline = GatewayOnline::getByAppId($app_id);
+        if ($gatewayOnline instanceof GatewayOnline) {
+            $gatewayOnline->client_id = $client_id;
+            $gatewayOnline->last_ping = time();
+            $gatewayOnline->online = $online ? 1 : 0;
+            $gatewayOnline->save();
+        }
+
+        return $gatewayOnline;
     }
 
     /**

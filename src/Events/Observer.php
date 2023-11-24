@@ -36,13 +36,7 @@ class Observer
         }
 
         //更新设备在线
-        $gatewayOnline = GatewayOnline::getByAppId($app_id);
-        if ($gatewayOnline instanceof GatewayOnline) {
-            $gatewayOnline->client_id = $client_id;
-            $gatewayOnline->last_ping = time();
-            $gatewayOnline->online = $online ? 1 : 0;
-            $gatewayOnline->save();
-        }
+        GatewayOnlineServices::updateOnline($app_id, $client_id, (bool)$online);
 
         //是否能打印
         QueuePrintServices::canPrintByBusinessWorker($app_id, $client_id, $_SESSION);
