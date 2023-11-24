@@ -86,6 +86,9 @@ class UserMiddleware implements MiddlewareInterface
         $uid = $data['id_number'];
         $model = User::find($uid);
         if ($model instanceof User) {
+            if ($model->status) {
+                throw new BusinessException('用户账号已禁用');
+            }
             // Step3：验证签名
             $origin = [
                 'id_number' => $uid,

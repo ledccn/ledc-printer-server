@@ -34,6 +34,10 @@ class ApplicationServices
      */
     public static function create(array $data, WaUserByPluginAdmin|WaUserByPluginUser $user): Application
     {
+        if ($user->status) {
+            throw new BusinessException('用户账号已禁用');
+        }
+
         $rule = [
             'title|打印机标题' => 'require',
             'description|打印机描述' => 'require',
