@@ -9,6 +9,9 @@ use Ledc\Printer\Model\GatewayOnline;
 use Ledc\Printer\Model\GatewayOnlineObserver;
 use Ledc\Printer\Model\QueuePrint;
 use Ledc\Printer\Model\QueuePrintObserver;
+use Ledc\Printer\Model\WaUserObserver;
+use plugin\admin\app\model\User as WaUserByPluginAdmin;
+use plugin\user\app\model\User as WaUserByPluginUser;
 use Workerman\Worker;
 
 /**
@@ -35,6 +38,13 @@ class Bootstrap implements \Webman\Bootstrap
         GatewayOnline::observe(GatewayOnlineObserver::class);
         QueuePrint::observe(QueuePrintObserver::class);
 
+        //注册webman用户模型观察者
+        if (class_exists(WaUserByPluginAdmin::class)) {
+            WaUserByPluginAdmin::observe(WaUserObserver::class);
+        }
+        if (class_exists(WaUserByPluginUser::class)) {
+            WaUserByPluginUser::observe(WaUserObserver::class);
+        }
         //密钥
         $gatewaySecret = getenv('GATEWAY_SECRET') ?: '';
         //注册中心地址

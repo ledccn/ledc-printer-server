@@ -1,0 +1,1 @@
+ALTER TABLE `wa_users` ADD `passphrase` CHAR(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '用户密钥';
