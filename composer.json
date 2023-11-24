@@ -1,0 +1,46 @@
+{
+  "name": "ledc/printer",
+  "type": "library",
+  "license": "MIT",
+  "description": "Webman plugin ledc/printer",
+  "authors": [
+    {
+      "name": "david",
+      "email": "367013672@qq.com",
+      "homepage": "https://www.iyuu.cn",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "367013672@qq.com",
+    "issues": "https://github.com/ledccn/ledc-printer-server/issues",
+    "releases": "https://github.com/ledccn/ledc-printer-server/releases",
+    "wiki": "https://github.com/ledccn/ledc-printer-server/wiki",
+    "source": "https://github.com/ledccn/ledc-printer-server"
+  },
+  "require": {
+    "php": ">=8.1",
+    "workerman/webman-framework": "^1.5.0",
+    "workerman/gateway-worker": "^3.1",
+    "workerman/crontab": "^1.0",
+    "workerman/http-client": "^2.0",
+    "workerman/channel": "^1.2",
+    "webman/console": "^1.2",
+    "webman/event": "^1.0",
+    "webman/admin": "^0.6.18",
+    "topthink/think-container": "^2.0",
+    "topthink/think-validate": "^2.0",
+    "topthink/think-helper": "^3.1",
+    "ledc/locker": "^1.0",
+    "ledc/macroable": "^1.0",
+    "ledc/redis-queue": "^2.0",
+    "ledc/workerman-process": "^1.0",
+    "illuminate/redis": "^10.32",
+    "symfony/cache": "^6.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ledc\\Printer\\": "src"
+    }
+  }
+}

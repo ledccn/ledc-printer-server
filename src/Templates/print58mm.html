@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page
+        xmlns="http://cloudprint.cainiao.com/print"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://cloudprint.cainiao.com/print
+         http://cloudprint-docs-resource.oss-cn-shanghai.aliyuncs.com/lpml_schema.xsd"
+        xmlns:editor="http://cloudprint.cainiao.com/schema/editor"
+        width="48" height="" splitable="true">
+    <header height="0"></header>
+    <footer height="0"></footer>
+    <!-- borderWidth="0" cellBorderWidth="0"-->
+    <table width="48" borderWidth="0" cellBorderWidth="0">
+        <!--页面标题-->
+        <tr>
+            <td colspan="2">
+                <text style="fontFamily:SimHei;fontWeight:bold;fontSize:14;lineHeight:7;align:center;">
+                    <![CDATA[****#<%=_data.issue_number %>海鹭外卖****]]>
+                </text>
+            </td>
+        </tr>
+        <!--店铺名称-->
+        <tr>
+            <td colspan="2" style="padding:1 0">
+                <text style="fontFamily:SimHei;align:center;fontSize:8;">
+                    <![CDATA[*<%=_data.merchant.mer_name%>*]]>
+                </text>
+            </td>
+        </tr>
+        <!--下单时间-->
+        <tr>
+            <td colspan="2" style="padding:2 0">
+                <text style="fontFamily:SimHeifont;fontSize:8;">
+                    <![CDATA[下单时间：<%=_data.create_time%>]]>
+                </text>
+            </td>
+        </tr>
+        <!--分割线（破折线）-->
+        <tr>
+            <td colspan="2">
+                <text><![CDATA[·····························································]]></text>
+            </td>
+        </tr>
+        <!--备注-->
+        <tr>
+            <td colspan="2">
+                <text style="fontFamily:黑体;fontWeight:bold;fontSize:14;wrap:true">
+                    <![CDATA[备注：<%=_data.remark%>]]>
+                </text>
+            </td>
+        </tr>
+        <!--分割线（点线）-->
+        <tr>
+            <td colspan="2" style="padding:1 0">
+                <text><![CDATA[*******************************************]]></text>
+            </td>
+        </tr>
+        <!--一号口袋-->
+        <tr>
+            <td colspan="2">
+                <text style="fontFamily:SimHei;align:center;;">
+                    <![CDATA[----------- 一号口袋 ------------]]>
+                </text>
+            </td>
+        </tr>
+        <!--食品列表-->
+        <% for(var i=0;i<_data.product.length;i++){ %>
+        <tr>
+            <td colspan="2" style="padding:1"><text style="fontSize:12;"><%=_data.product[i].name%></text></td>
+        </tr>
+        <tr>
+            <td><text style="align:right;fontSize:12;">* <%=_data.product[i].num%></text></td>
+            <td><text style="align:right;fontSize:12;"><%=_data.product[i].price%></text></td>
+        </tr>
+        <%}%>
+        <!--其他信息-->
+        <tr>
+            <td colspan="2" style="padding:3 0">
+                <text style="fontFamily:SimHei;align:center;;">
+                    <![CDATA[------------- 其他 -------------]]>
+                </text>
+            </td>
+        </tr>
+        <!--打包费-->
+        <tr>
+            <td style="padding:1 0">
+                <text style="fontFamily:SimHei;align:left;;">
+                    <![CDATA[打包费]]>
+                </text>
+            </td>
+            <td style="padding:1 0">
+                <text style="fontFamily:SimHei;align:right;;">
+                    <![CDATA[<%=_data.box_price%>]]>
+                </text>
+            </td>
+        </tr>
+        <!--配送费-->
+        <tr>
+            <td style="padding:1 0">
+                <text style="fontFamily:SimHei;align:left;fontSize:8;">
+                    <![CDATA[配送费]]>
+                </text>
+            </td>
+            <td style="padding:1 0">
+                <text style="fontFamily:SimHei;align:right;fontSize:8;">
+                    <![CDATA[<%=_data.pay_postage%>]]>
+                </text>
+            </td>
+        </tr>
+        <!--优惠价格-->
+        <tr>
+            <td style="padding:1 0">
+                <text style="fontFamily:SimHei;align:left;fontSize:8;">
+                    <![CDATA[优惠价格]]>
+                </text>
+            </td>
+            <td style="padding:1 0">
+                <text style="fontFamily:SimHei;align:right;fontSize:8;">
+                    <![CDATA[- <%=_data.coupon_price%>]]>
+                </text>
+            </td>
+        </tr>
+        <!--分割线（点线）-->
+        <tr>
+            <td colspan="2" style="padding:1 0">
+                <text><![CDATA[*******************************************]]></text>
+            </td>
+        </tr>
+        <!--总价格-->
+        <tr>
+            <td style="padding:2 0 0 0">
+                <text style="fontFamily:SimHei;align:right;fontSize:8;lineHeight:5">
+                    <![CDATA[(用户在线支付)]]>
+                </text>
+            </td>
+            <td>
+                <text style="fontFamily:SimHei;fontWeight:bold;align:left;fontSize:13;">
+                    <![CDATA[<%=_data.total_price%>元]]>
+                </text>
+            </td>
+        </tr>
+        <!--分割线（破折线）-->
+        <tr>
+            <td colspan="2">
+                <text><![CDATA[---------------------------------------------------]]></text>
+            </td>
+        </tr>
+        <!--客户名称-->
+        <tr>
+            <td colspan="2" style="padding:1 0">
+                <text style="fontFamily:SimHei;fontWeight:bold;fontSize:14;">
+                    <![CDATA[<%=_data.real_name%>]]>
+                </text>
+            </td>
+        </tr>
+        <!--客户手机号-->
+        <tr>
+            <td colspan="2" style="padding:1 0">
+                <text style="fontFamily:黑体;fontWeight:bold;fontSize:14;wrap:true">
+                    <![CDATA[顾客号码：手机尾号<%=_data.user_phone%>]]>
+                </text>
+            </td>
+        </tr>
+        <!--一维码-->
+        <tr>
+            <td colspan="2" style="align:center;padding:1 0;">
+                <barcode width="44" height="7.0" value="123987af" type="code128a" style="hideText:true;"/>
+            </td>
+        </tr>
+        <!--页脚-->
+        <tr>
+            <td colspan="2" height="15" style="padding:2 0">
+                <text style="fontFamily:SimHei;fontSize:11;align:center;">
+                    <![CDATA[***** #<%=_data.issue_number %>完 *****]]>
+                </text>
+            </td>
+        </tr>
+    </table>
+</page>
