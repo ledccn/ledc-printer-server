@@ -43,6 +43,7 @@ class ApplicationServices
         $v->check($data);
 
         $application = new Application();
+        $application->user_id = $user->id;
         $application->title = $data['title'];
         $application->description = $data['description'];
         $application->callback_url = $data['callback_url'];
